@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">DemoApp</string>
     <string name="initStr">this is a init sentence</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>

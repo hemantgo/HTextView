@@ -95,17 +95,19 @@ public class FadeText extends HText {
     protected void drawFrame(Canvas canvas) {
         Layout layout = mHTextView.getLayout();
         int gapIndex = 0;
-        for (int i = 0; i < layout.getLineCount(); i++) {
-            int lineStart = layout.getLineStart(i);
-            int lineEnd = layout.getLineEnd(i);
-            float lineLeft = layout.getLineLeft(i);
-            float lineBaseline = layout.getLineBaseline(i);
-            String lineText = mText.subSequence(lineStart, lineEnd).toString();
-            for (int c = 0; c < lineText.length(); c++) {
-                int alpha = alphaList.get(gapIndex);
-                mPaint.setAlpha((int) ((255 - alpha) * progress + alpha));
-                canvas.drawText(String.valueOf(lineText.charAt(c)), lineLeft, lineBaseline, mPaint);
-                lineLeft += gapList.get(gapIndex++);
+        if(layout != null) {
+            for (int i = 0; i < layout.getLineCount(); i++) {
+                int lineStart = layout.getLineStart(i);
+                int lineEnd = layout.getLineEnd(i);
+                float lineLeft = layout.getLineLeft(i);
+                float lineBaseline = layout.getLineBaseline(i);
+                String lineText = mText.subSequence(lineStart, lineEnd).toString();
+                for (int c = 0; c < lineText.length(); c++) {
+                    int alpha = alphaList.get(gapIndex);
+                    mPaint.setAlpha((int) ((255 - alpha) * progress + alpha));
+                    canvas.drawText(String.valueOf(lineText.charAt(c)), lineLeft, lineBaseline, mPaint);
+                    lineLeft += gapList.get(gapIndex++);
+                }
             }
         }
     }
